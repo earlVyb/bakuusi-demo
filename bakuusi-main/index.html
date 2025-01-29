@@ -5,8 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Bakuusi Clan</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Modal and Form Styles */
+        .modal {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .form-container {
+            max-width: 400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        
+        .modal-content {
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .form-control:focus {
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+        }
+        
+        .btn-primary {
+            background-color: #2e7d32;
+            border-color: #2e7d32;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1b5e20;
+            border-color: #1b5e20;
+        }
+        
+        .form-label {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .toggle-form {
+            color: #2e7d32;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .toggle-form:hover {
+            text-decoration: underline;
+            color: #1b5e20;
+        }
+        
+        .modal-header {
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .modal-footer {
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        @media (max-width: 576px) {
+            .modal-dialog {
+                margin: 1rem;
+            }
+            
+            .form-container {
+                width: 100%;
+                padding: 0 15px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -102,7 +174,6 @@
     </section>
 
     <!-- News Section -->
-    <!-- Update the News Section in index.html -->
     <section class="news">
         <div class="container">
             <h2>News & Family Briefs</h2>
@@ -121,6 +192,83 @@
             </div>
         </div>
     </section>
+
+    <!-- Registration Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Create Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-container">
+                        <form id="registerForm">
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="fullName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmPassword" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Register</button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p>Already have an account? <a href="#" class="toggle-form" onclick="toggleForms('login')">Login here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-container">
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="loginEmail" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="loginEmail" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="loginPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="loginPassword" required>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p>Don't have an account? <a href="#" class="toggle-form" onclick="toggleForms('register')">Register here</a></p>
+                            <a href="#" class="toggle-form">Forgot Password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -144,8 +292,8 @@
                     <div class="social-icons">
                         <a href="#" class="glow-effect"><i class="fab fa-whatsapp"></i></a>
                         <a href="#" class="glow-effect"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="glow-effect"><i class="fab fa-twitter"></i></a> <!-- Fix to X -->
-                        <a href="#" class="glow-effect" ><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="glow-effect"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="glow-effect"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#" class="glow-effect"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="glow-effect"><i class="fab fa-youtube"></i></a>
                     </div>
@@ -164,6 +312,50 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add click event to register button
+        document.querySelector('.register-btn').addEventListener('click', function() {
+            const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
+            registerModal.show();
+        });
+
+        // Add click event to "Join Us Today!" button
+        document.querySelector('.primary-btn').addEventListener('click', function() {
+            const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
+            registerModal.show();
+        });
+
+        // Function to toggle between registration and login forms
+        function toggleForms(form) {
+            const registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+            const loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+            
+            if (form === 'login') {
+                registerModal.hide();
+                const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+            } else {
+                loginModal.hide();
+                const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
+                registerModal.show();
+            }
+        }
+
+        // Form submission handling
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your registration logic here
+            console.log('Registration form submitted');
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your login logic here
+            console.log('Login form submitted');
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
